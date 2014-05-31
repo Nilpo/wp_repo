@@ -68,8 +68,9 @@ function repo_handler($attribs, $content = null) {
         return $attribs[0];
     
     $branch = (is_null($a['branch'])) ? $a['branch'] : 'master';
-    $html = '<div id="wp-repo_%s" class="wp-repo" data-user="%s" data-name="%s" data-branch="%s"></div>';
+    $loading = "Loading...";  //TODO: add loading icon
+    $html = '<div id="wp-repo_%s" class="wp-repo" data-user="%s" data-name="%s" data-branch="%s">%s</div>';
     
-    return sprintf($html, ++$instance, $a['user'], $a['name'], $branch);
+    return sprintf($html, ++$instance, $a['user'], $a['name'], $branch, $loading);
 }
 add_shortcode( 'repo', 'repo_handler' );
