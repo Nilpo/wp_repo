@@ -29,4 +29,14 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+$loadInFooter = false;
+
+function repo_init() {
+	if (!is_admin()) {
+		//wp_enqueue_script('jquery');      // should load as a dependency below
+		wp_register_script('repojs', '//cdnjs.cloudflare.com/ajax/libs/repo.js/5c0eae0f1b/repo.min.js', array('jquery'), null, $loadInFooter);
+		wp_enqueue_script('repojs');
+	}
+}
+add_action('init', 'repo_init');
 
