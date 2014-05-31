@@ -32,11 +32,11 @@ License: GPL2
 $loadInFooter = false;
 
 function repo_init() {
-	if (!is_admin()) {
-		//wp_enqueue_script('jquery');      // should load as a dependency below
-		wp_register_script('repojs', '//cdnjs.cloudflare.com/ajax/libs/repo.js/5c0eae0f1b/repo.min.js', array('jquery'), null, $loadInFooter);
-		wp_enqueue_script('repojs');
-	}
+    if (!is_admin()) {
+        //wp_enqueue_script('jquery');      // should load as a dependency below
+        wp_register_script('repojs', '//cdnjs.cloudflare.com/ajax/libs/repo.js/5c0eae0f1b/repo.min.js', array('jquery'), null, $loadInFooter);
+        wp_enqueue_script('repojs');
+    }
 }
 add_action('init', 'repo_init');
 
