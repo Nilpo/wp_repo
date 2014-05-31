@@ -29,14 +29,47 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/**
+ * Boolean value indicating whether scripts should be loaded in the page footer
+ */
 $loadInFooter = false;
 
+/**
+ * Counts instances on the page
+ */
+$instance = 0;
+
+/**
+ * Loads required scripts in the page
+ */
 function repo_init() {
     if (!is_admin()) {
         //wp_enqueue_script('jquery');      // should load as a dependency below
         wp_register_script('repojs', '//cdnjs.cloudflare.com/ajax/libs/repo.js/5c0eae0f1b/repo.min.js', array('jquery'), null, $loadInFooter);
         wp_enqueue_script('repojs');
+        wp_register_script('wprepo', plugins_url('wp-repo.js' , dirname(__FILE__)), array('repojs'), null, $loadInFooter);
+        wp_enqueue_script('wprepo');
     }
 }
+
 add_action('init', 'repo_init');
 
+
+
+// [repo user="user-value" name="name-value" branch="branch-value"]
+function repo_handler($attribs, $content = null) {
+    $a = shortcode_attrs( array(
+        'user'   => null,
+        'name'   => null,
+        'branch' => null
+    ), $attribs );
+    
+    if ($a['user'] === null || $a['name'] === null)
+        return $attribs[0];
+    
+    $branch = (is_null($a['branch'])) ? $a['branch'] : 'master';
+    $html = '<div id="wp-repo_%s" class="wp-repo" data-user="%s" data-name="%s" data-branch="%s"></div>';
+    
+    return sprintf($html, ++$instance, $a['user'], $a['name'], $branch);
+}
+add_shortcode( 'repo', 'repo_handler' );
