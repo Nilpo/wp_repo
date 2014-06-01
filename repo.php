@@ -43,6 +43,8 @@ $instance = 0;
  * Loads required scripts in the page
  */
 function repo_init() {
+    global $loadInFooter;
+    
     if (!is_admin()) {
         if (!wp_script_is('jquery')) {
             wp_enqueue_script('jquery', '//code.jquery.com/jquery-latest.min.js', false, null, $loadInFooter);
