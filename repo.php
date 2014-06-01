@@ -62,7 +62,9 @@ add_action('init', 'repo_init');
 
 // [repo user="user-value" name="name-value" branch="branch-value"]
 function repo_handler($attribs, $content = null) {
-    $a = shortcode_attrs( array(
+    global $instance;
+    
+    $a = shortcode_atts( array(
         'user'   => null,
         'name'   => null,
         'branch' => null
