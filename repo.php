@@ -50,7 +50,7 @@ function repo_init() {
             wp_enqueue_script('jquery', '//code.jquery.com/jquery-latest.min.js', false, null, $loadInFooter);
         }
         wp_register_script('repojs', '//cdnjs.cloudflare.com/ajax/libs/repo.js/5c0eae0f1b/repo.min.js', array('jquery'), null, $loadInFooter);
-        wp_register_script('wprepo', plugins_url('wp-repo.js' , dirname(__FILE__)), array('repojs'), null, $loadInFooter);
+        wp_register_script('wprepo', plugins_url('wp-repo.js' , __FILE__), array('repojs'), null, $loadInFooter);
         wp_enqueue_script('repojs');
         wp_enqueue_script('wprepo');
     }
