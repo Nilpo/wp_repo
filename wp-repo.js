@@ -11,6 +11,6 @@ $(window).load(function() {
       data.branch = branch;
     }
     
-    $(this).repo(data);
+    $(this).empty().repo(data);
   });
 });
