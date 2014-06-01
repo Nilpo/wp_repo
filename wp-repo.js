@@ -1,5 +1,5 @@
 $(window).load(function() {
-  $('.repo').each(function() {
+  $('.wp_repo').each(function() {
     //$(this).attr('data-name');    //legacy
     data = {
       user:   $(this).data('user'),
